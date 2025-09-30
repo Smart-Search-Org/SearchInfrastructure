@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: search-llm-deployment
+  namespace: smart-search
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: search-llm
+  template:
+    metadata:
+      labels:
+        app: search-llm
+    spec:
+      containers:
+      - name: search-llm
+        image: dansil2301/search_llm:latest
+        ports:
+        - containerPort: 5000
+        resources:
+          limits:
+            nvidia.com/gpu: 1
