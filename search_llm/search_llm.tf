@@ -4,6 +4,4 @@ resource "kubernetes_manifest" "llm_deployment" {
 
 resource "kubernetes_manifest" "llm_service" {
   manifest = yamldecode(file("${path.module}/search_llm_service.yaml"))
-
 }
-

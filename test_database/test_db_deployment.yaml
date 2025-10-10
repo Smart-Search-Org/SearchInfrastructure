@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-database-deployment
+  namespace: smart-search
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-database
+  template:
+    metadata:
+      labels:
+        app: test-database
+    spec:
+      containers:
+      - name: test-database
+        image: mysql:latest
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: test
+        - name: MYSQL_DATABASE
+          value: test_db
+        - name: MYSQL_PASSWORD
+          value: test
+        volumeMounts:
+        - name: mysql-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-storage
+        emptyDir: {}

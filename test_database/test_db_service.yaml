@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-database-service
+  namespace: smart-search
+spec:
+  selector:
+    app: test-database
+  ports:
+    - name: mysql
+      port: 3306
+      targetPort: 3306
+  type: ClusterIP

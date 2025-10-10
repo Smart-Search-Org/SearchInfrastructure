@@ -5,3 +5,7 @@ module "service_llm" {
 module "service_search_engine" {
   source = "./search_engine"
 }
+
+module "service_test_database" {
+  source = "./test_database"
+}
