@@ -4,18 +4,18 @@ clusters:
     certificate-authority: \\wsl.localhost\Ubuntu\home\danila\.minikube\ca.crt
     extensions:
     - extension:
-        last-update: Tue, 30 Sep 2025 22:35:15 CEST
+        last-update: Sun, 12 Oct 2025 15:23:27 CEST
         provider: minikube.sigs.k8s.io
         version: v1.37.0
       name: cluster_info
-    server: https://127.0.0.1:55669
+    server: https://127.0.0.1:64910
   name: minikube
 contexts:
 - context:
     cluster: minikube
     extensions:
     - extension:
-        last-update: Fri, 10 Oct 2025 20:48:49 CEST
+        last-update: Sun, 12 Oct 2025 15:23:27 CEST
         provider: minikube.sigs.k8s.io
         version: v1.37.0
       name: context_info

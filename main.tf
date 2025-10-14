@@ -9,3 +9,7 @@ module "service_search_engine" {
 module "service_test_database" {
   source = "./test_database"
 }
+
+module "service_search_gateway" {
+  source = "./search_gateway"
+}
