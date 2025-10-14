@@ -18,3 +18,10 @@ spec:
         image: dansil2301/search_engine:latest
         ports:
         - containerPort: 8080
+        volumeMounts:
+        - name: search-engine-storage
+          mountPath: /app/.appdata
+      volumes:
+      - name: search-engine-storage
+        persistentVolumeClaim:
+          claimName: search-engine-pvc
