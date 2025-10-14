@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: search-gateway-deployment
+  namespace: smart-search
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: search-gateway
+  template:
+    metadata:
+      labels:
+        app: search-gateway
+    spec:
+      containers:
+      - name: search-gateway
+        image: dansil2301/search_gateway:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: SECRET
+          value: "CRAZY_HAMBURGER"
+        - name: MONGO_URI
+          value: "mongodb+srv://dansil2301:Varvara88@smartsearchusers.bnqnzwz.mongodb.net/?retryWrites=true&w=majority&appName=SmartSearchUsers"
+        - name: LLM_URL
+          value: "http://search-llm-service:80"
+        - name: SEARCH_URL
+          value: "http://search-engine-service:80"

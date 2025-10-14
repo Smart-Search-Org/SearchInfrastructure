@@ -1,0 +1,2 @@
+- Specify cluster config
+- To start kafka follow the guide: https://strimzi.io/quickstarts/
