@@ -18,6 +18,13 @@ spec:
         image: dansil2301/search_engine:latest
         ports:
         - containerPort: 8080
+        env:
+        - name: SERVER_PORT
+          value: 8080
+        - name: DATABASE_DSN
+          value: postgres://postgres:search_engine_pwd@search-engine-database-service:5432/search_engine_db?sslmode=disable
+        - name: OPENAI_APIKEY
+          value: hehe
         volumeMounts:
         - name: search-engine-storage
           mountPath: /app/.appdata
