@@ -1,0 +1,40 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: keycloak-realm-import
+  namespace: ${namespace}
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: importer
+          image: curlimages/curl:latest
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for Keycloak..."
+              sleep 15
+
+              TOKEN=$(curl -s -X POST "${keycloak_url}/realms/master/protocol/openid-connect/token" \
+                -d "client_id=admin-cli" \
+                -d "username=${admin_user}" \
+                -d "password=${admin_pass}" \
+                -d "grant_type=password" | jq -r '.access_token')
+
+              echo "Importing realm..."
+              curl -s -X POST "${keycloak_url}/admin/realms" \
+                -H "Authorization: Bearer $TOKEN" \
+                -H "Content-Type: application/json" \
+                --data-binary @/realm/realm.json
+
+          volumeMounts:
+            - name: realm
+              mountPath: /realm
+
+      volumes:
+        - name: realm
+          configMap:
+            name: keycloak-realm

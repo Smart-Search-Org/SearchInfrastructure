@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+  namespace: ${namespace}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      containers:
+        - name: keycloak
+          image: quay.io/keycloak/keycloak:25.0
+          args:
+            - start-dev
+          env:
+            - name: KC_DB
+              value: postgres
+            - name: KC_DB_URL
+              value: jdbc:postgresql://${db_host}:${db_port}/keycloak_db
+            - name: KC_DB_USERNAME
+              value: ${db_user}
+            - name: KC_DB_PASSWORD
+              value: ${db_password}
+            - name: KEYCLOAK_ADMIN
+              value: ${admin_user}
+            - name: KEYCLOAK_ADMIN_PASSWORD
+              value: ${admin_pass}
+          ports:
+            - containerPort: 8080

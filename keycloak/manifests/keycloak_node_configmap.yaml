@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: node-keycloak-config
+  namespace: ${namespace}
+data:
+  keycloak.json: |
+    {
+      "realm": "${realm_name}",
+      "auth-server-url": "${keycloak_url}/realms/${realm_name}",
+      "ssl-required": "none",
+      "resource": "${client_id}",
+      "bearer-only": true,
+      "confidential-port": 0,
+      "credentials": {
+        "secret": "${client_secret}"
+      }
+    }
