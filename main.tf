@@ -18,3 +18,12 @@ module "service_test_database" {
 module "service_search_gateway" {
   source = "./search_gateway"
 }
+
+module "service_keycloak_database" {
+  source = "./keycloak_database"
+}
+
+module "service_keycloak" {
+  source = "./keycloak"
+  depends_on = [ module.service_keycloak_database ]
+}
