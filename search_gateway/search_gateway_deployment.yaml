@@ -13,7 +13,7 @@ spec:
       labels:
         app: search-gateway
       annotations:
-        version: "1"
+        version: '2'
     spec:
       containers:
       - name: search-gateway
@@ -22,10 +22,10 @@ spec:
         - containerPort: 3000
         env:
         - name: SECRET
-          value: "CRAZY_HAMBURGER"
+          value: CRAZY_HAMBURGER
         - name: MONGO_URI
-          value: "mongodb+srv://dansil2301:Varvara88@smartsearchusers.bnqnzwz.mongodb.net/?retryWrites=true&w=majority&appName=SmartSearchUsers"
+          value: mongodb+srv://dansil2301:Varvara88@smartsearchusers.bnqnzwz.mongodb.net/?retryWrites=true&w=majority&appName=SmartSearchUsers
         - name: LLM_URL
-          value: "http://search-llm-service:80"
+          value: http://search-llm-service:80
         - name: SEARCH_URL
-          value: "http://search-engine-service:80"
+          value: http://search-engine-service:80
