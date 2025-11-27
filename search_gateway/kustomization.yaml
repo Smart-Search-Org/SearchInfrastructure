@@ -1,6 +1,6 @@
 resources:
-  - deployment.yaml
-  - service.yaml
+  - search_gateway_deployment.yaml
+  - search_gateway_service.yaml
 
 configMapGenerator:
   - name: search-gateway-trigger
