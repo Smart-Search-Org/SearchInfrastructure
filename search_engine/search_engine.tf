@@ -11,3 +11,11 @@ resource "kubernetes_manifest" "search_engine_service" {
   manifest = yamldecode(file("${path.module}/search_engine_service.yaml"))
 }
 
+resource "kubernetes_manifest" "search_engine_hpa" {
+  manifest = yamldecode(file("${path.module}/search_engine_hpa.yaml"))
+
+  field_manager {
+    name           = "terraform"
+    force_conflicts = true
+  }
+}

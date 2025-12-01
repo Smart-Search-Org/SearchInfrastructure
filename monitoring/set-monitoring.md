@@ -10,3 +10,7 @@
 - `kubectl create namespace monitoring`
 - `helm install -n monitoring --values values.yaml loki-stack grafana/loki-stack`
 
+
+## Adapter for testing
+
+- `helm install prometheus-adapter prometheus-community/prometheus-adapter --namespace monitoring --set prometheus.url=http://loki-stack-prometheus-server.monitoring.svc.cluster.local:9090`
