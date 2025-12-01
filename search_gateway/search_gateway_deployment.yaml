@@ -13,7 +13,7 @@ spec:
       labels:
         app: search-gateway
       annotations:
-        version: '6'
+        version: '7'
     spec:
       containers:
       - name: search-gateway
